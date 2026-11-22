@@ -21,7 +21,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # ==================== DIRECTORY CONFIGURATION ====================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "frontend"))
+FRONTEND_DIR = BASE_DIR
 
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "tripcraft-bca-capstone-dark-upgrade-2026-secure-key")
