@@ -1,5 +1,5 @@
 /* ===================================================================
-   TripCraft — Premium Purple/Lavender Dark Theme Travel Platform
+   Fernweh — Premium Purple/Lavender Dark Theme Travel Platform
    CSS3 Stylesheet (Deep Black-Purple & Lavender UI/UX)
    =================================================================== */
 
@@ -553,7 +553,7 @@ p {
     padding-bottom: 70px;
     display: flex;
     align-items: center;
-    background: url('../photo/kotor.jpg') center/cover no-repeat;
+    background: url('kotor.jpg') center/cover no-repeat;
     color: #ffffff;
 }
 
