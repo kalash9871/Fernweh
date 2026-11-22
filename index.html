@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripCraft — Explore India's Hidden Gems & Plan Smart Trips</title>
+    <meta name="description" content="TripCraft is a modern travel platform featuring 9 handpicked hidden destinations in India, realistic budget calculations, and personalized day-wise itineraries.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Leaflet.js CSS for Interactive Destinations Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <!-- Custom Dark Theme Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="header" id="header">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-compass"></i></span>
+                <span class="logo-text">Trip<span>Craft</span></span>
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li class="nav-item"><a href="planner.html" class="nav-link">Plan a Trip</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <!-- Dynamic Auth Section (Synced with JS) -->
+                <div class="nav-auth" id="navAuthContainer">
+                    <div class="auth-logged-out">
+                        <a href="login.html" class="btn-nav-login">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Register</a>
+                    </div>
+                </div>
+            </nav>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <span class="hero-badge"><i class="fa-solid fa-sparkles"></i> Uncover India's Secret Treasures</span>
+                <h1 class="hero-title">Discover India's <span>Untold Wonders</span></h1>
+                <p class="hero-description">
+                    Step beyond crowded commercial hotspots. Explore serene pine valleys, ancient Tibetan monasteries, living root bridges, and historic kingdoms with realistic budget breakdowns and personalized itineraries.
+                </p>
+                <div class="hero-buttons">
+                    <a href="destinations.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-compass"></i> Explore 9 Destinations</a>
+                    <a href="planner.html" class="btn btn-secondary btn-lg"><i class="fa-solid fa-wand-magic-sparkles"></i> Plan a Trip</a>
+                </div>
+
+                <!-- Hero Highlights Strip -->
+                <div class="hero-highlights">
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <div>
+                            <strong>9 Offbeat Gems</strong>
+                            <span>Handpicked locales</span>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                        <div>
+                            <strong>Destination Budgeting</strong>
+                            <span>Realistic regional rates</span>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div>
+                            <strong>Day-Wise Plans</strong>
+                            <span>Customized schedules</span>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <div>
+                            <strong>BCA Capstone</strong>
+                            <span>Clean modular build</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Destinations Preview Section -->
+        <section class="destinations-section" style="padding-top: 80px;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Featured Getaways</span>
+                    <h2 class="section-title">Handpicked Secret Escapes</h2>
+                    <p class="section-subtitle">
+                        A glimpse into three of our 9 remarkable offbeat Indian destinations, celebrated for untouched nature and living culture.
+                    </p>
+                </div>
+
+                <!-- Top 3 Grid Preview -->
+                <div class="destinations-grid" id="destinationsGrid">
+                    <!-- Populated dynamically via main.js -->
+                </div>
+
+                <div style="text-align: center; margin-top: 48px;">
+                    <a href="destinations.html" class="btn btn-outline btn-lg">
+                        <i class="fa-solid fa-grid-2"></i> View All 9 Destinations <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= INTERACTIVE DESTINATIONS MAP SECTION ================= -->
+        <section class="map-section" id="interactiveMapSection">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag"><i class="fa-solid fa-map-location-dot"></i> Geographical Explorer</span>
+                    <h2 class="section-title">Explore India's Hidden Gems on an Interactive Map</h2>
+                    <p class="section-subtitle">
+                        Explore the geographical distribution of all 9 curated offbeat destinations across India. Click any marker or quick-jump button to view regional highlights and plan your trip.
+                    </p>
+                </div>
+
+                <!-- Quick-Jump Filter Chips -->
+                <div class="map-chips-container" id="mapChipsContainer">
+                    <!-- Populated dynamically via main.js -->
+                </div>
+
+                <!-- Map Canvas -->
+                <div class="map-wrapper">
+                    <div id="destinationsMap" class="destinations-map"></div>
+                    <div class="map-overlay-legend">
+                        <span class="legend-dot"></span>
+                        <span>9 Verified Offbeat Locations across India</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Trip Planner Teaser Section -->
+        <section style="background-color: var(--bg-secondary); padding: 80px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+                <div>
+                    <span class="section-tag">Smart Calculator</span>
+                    <h2 style="font-size: 2.3rem; margin-bottom: 18px; color: var(--text-main);">
+                        Plan Smarter with Real Budget Analysis
+                    </h2>
+                    <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.7;">
+                        No more guesswork or generic estimates. TripCraft's calculation engine models accommodation based on twin-sharing rooms, cab pooling for your group size, and realistic dining averages tailored to your travel preference.
+                    </p>
+                    <ul style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px;">
+                        <li style="display: flex; align-items: center; gap: 12px; font-weight: 500;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i> Transparent cost breakdown: Stay, Food, Transport & Activities
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 12px; font-weight: 500;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i> Feasibility warnings if your budget requires adjustments
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 12px; font-weight: 500;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i> Direct Google Maps navigation to destination and transit hubs
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 12px; font-weight: 500;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i> Expandable morning, afternoon, and evening schedules
+                        </li>
+                    </ul>
+                    <a href="planner.html" class="btn btn-primary btn-lg">
+                        <i class="fa-solid fa-sliders"></i> Open Interactive Planner
+                    </a>
+                </div>
+
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-lg);">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
+                        <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.2rem; color: var(--text-main);">Quick Trip Preview</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">See how TripCraft calculates realistic costs</span>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-secondary); border-radius: var(--radius-md); padding: 20px; border: 1px solid var(--border-color); margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Destination:</span>
+                            <strong style="color: var(--text-main);">Ziro Valley, Arunachal</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Duration & Travellers:</span>
+                            <strong style="color: var(--text-main);">4 Days • 2 Persons</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Preference Style:</span>
+                            <strong style="color: var(--primary);">Nature & Scenic Trails</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border-color);">
+                            <span>Estimated / Person:</span>
+                            <strong style="color: var(--secondary-accent); font-size: 1.15rem;">₹9,452</strong>
+                        </div>
+                    </div>
+
+                    <a href="planner.html?dest=ziro" class="btn btn-outline btn-block">
+                        <i class="fa-solid fa-arrow-right"></i> Customize This Plan
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose TripCraft / Sustainable Travel -->
+        <section style="padding: 80px 0;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Sustainable Exploration</span>
+                    <h2 class="section-title">Why Travel Offbeat with TripCraft?</h2>
+                    <p class="section-subtitle">
+                        Championing local indigenous communities, reducing over-tourism strains, and giving you an unforgettable journey.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
+                        <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(54, 191, 192, 0.15); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;">
+                            <i class="fa-solid fa-tree"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 12px;">Eco-Friendly Homestays</h3>
+                        <p style="font-size: 0.94rem; line-height: 1.6;">
+                            Stay directly with local families in traditional bamboo huts and heritage havelis. Your travel directly supports grassroots economies.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
+                        <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(217, 168, 108, 0.15); color: var(--secondary-accent); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 12px;">Zero Commercial Crowds</h3>
+                        <p style="font-size: 0.94rem; line-height: 1.6;">
+                            Escape the noise and queues of commercial tourist traps. Immerse yourself in authentic rituals, crisp mountain air, and quiet shorelines.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
+                        <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 12px;">Tailored Day Schedules</h3>
+                        <p style="font-size: 0.94rem; line-height: 1.6;">
+                            Modular day-wise itineraries that balance morning hikes, local artisan interactions, and quiet sunset viewpoints without exhausting rushes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Callout Banner -->
+        <section style="background: linear-gradient(135deg, #1d6e70 0%, #171c26 100%); padding: 70px 0; border-top: 1px solid var(--border-color);">
+            <div class="container" style="text-align: center; max-width: 800px;">
+                <h2 style="font-size: 2.4rem; color: #ffffff; margin-bottom: 16px;">Ready to Plan Your Next Indian Adventure?</h2>
+                <p style="font-size: 1.1rem; color: #e2e8f0; margin-bottom: 32px;">
+                    Create your free account, save customized itineraries to your profile, and explore India with confidence.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                    <a href="planner.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-route"></i> Start Planning Now</a>
+                    <a href="register.html" class="btn btn-outline-white btn-lg"><i class="fa-solid fa-user-plus"></i> Create Account</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo">
+                    <span class="logo-icon"><i class="fa-solid fa-compass"></i></span>
+                    <span class="logo-text">Trip<span>Craft</span></span>
+                </a>
+                <p class="footer-desc">
+                    A modern dark-themed travel platform dedicated to discovering authentic hidden gems in India with realistic budgeting and smart day-wise itineraries.
+                </p>
+                <div class="footer-badges">
+                    <span class="footer-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+                    <span class="footer-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                    <span class="footer-tag"><i class="fa-brands fa-js"></i> Vanilla JS</span>
+                    <span class="footer-tag"><i class="fa-brands fa-python"></i> Flask</span>
+                </div>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-chevron-right"></i> All 9 Destinations</a></li>
+                    <li><a href="planner.html"><i class="fa-solid fa-chevron-right"></i> Interactive Trip Planner</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> About Project & Architecture</a></li>
+                    <li><a href="login.html"><i class="fa-solid fa-chevron-right"></i> User Login</a></li>
+                    <li><a href="register.html"><i class="fa-solid fa-chevron-right"></i> Create Account</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col dest-col">
+                <h4>Featured Destinations</h4>
+                <ul class="footer-links">
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Ziro Valley, Arunachal Pradesh</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Tawang, Arunachal Pradesh</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Majuli Island, Assam</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Gokarna, Karnataka</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Devprayag, Uttarakhand</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Chopta, Uttarakhand</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>© 2026 TripCraft — BCA 5th Semester Web Application Development Project. Built with clean code for educational viva demonstration.</p>
+                <p class="footer-disclaimer-text">All travel costs and routes are simulated estimates for academic presentation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= DESTINATION DETAILS MODAL ================= -->
+    <div class="modal-backdrop" id="destinationModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close details modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-image-wrapper">
+                <img id="modalImg" src="" alt="Destination photo" class="modal-hero-img">
+                <div class="modal-badge-group">
+                    <span class="modal-category" id="modalCategory">Category</span>
+                    <span class="modal-state" id="modalState"><i class="fa-solid fa-location-dot"></i> State</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title" id="modalTitle">Destination Title</h3>
+                <p class="modal-description" id="modalDescription">Detailed destination description goes here.</p>
+
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-calendar-star"></i>
+                        <div>
+                            <strong>Best Time to Visit</strong>
+                            <span id="modalBestTime">October to March</span>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-wallet"></i>
+                        <div>
+                            <strong>Estimated Daily Rate</strong>
+                            <span id="modalDailyRate">₹1,500 - ₹2,500 / day</span>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <div>
+                            <strong>Nearest Airport</strong>
+                            <span id="modalAirport">Airport info</span>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-train"></i>
+                        <div>
+                            <strong>Nearest Railway Station</strong>
+                            <span id="modalRailway">Railway info</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-highlights-box">
+                    <h4><i class="fa-solid fa-star"></i> Key Highlights & Experiences</h4>
+                    <ul class="modal-highlights-list" id="modalHighlights">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-primary btn-block btn-lg" id="modalBtnPlanHere">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Plan Trip to This Destination
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet.js for Interactive Destinations Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — TripCraft</title>
+    <meta name="description" content="Manage your TripCraft account profile, default travel preferences, and security settings.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom Dark Theme Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="header" id="header">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-compass"></i></span>
+                <span class="logo-text">Trip<span>Craft</span></span>
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li class="nav-item"><a href="planner.html" class="nav-link">Plan a Trip</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <!-- Dynamic Auth Section -->
+                <div class="nav-auth" id="navAuthContainer">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </nav>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Banner -->
+        <section class="page-banner">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+                    <a href="profile.html">Profile</a>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+                    <span class="current">Settings</span>
+                </div>
+                <h1 class="page-title">Account & Travel Settings</h1>
+                <p class="page-subtitle">
+                    Customize your profile details, default travel calculation preferences, and security settings.
+                </p>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="settings-section">
+            <div class="container">
+                <div class="settings-wrapper">
+                    <form id="settingsForm" novalidate>
+                        <!-- Card 1: Personal Details -->
+                        <div class="settings-card">
+                            <div class="card-title-bar">
+                                <h3><i class="fa-solid fa-user-pen"></i> Personal Profile Information</h3>
+                                <a href="profile.html" class="btn btn-outline btn-sm">
+                                    <i class="fa-solid fa-arrow-left"></i> Back to Profile
+                                </a>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-half">
+                                    <label for="settingsName"><i class="fa-solid fa-user"></i> Full Name</label>
+                                    <input type="text" id="settingsName" class="form-control" required>
+                                </div>
+                                <div class="form-group col-half">
+                                    <label for="settingsEmail"><i class="fa-solid fa-envelope"></i> Email (Read-Only)</label>
+                                    <input type="email" id="settingsEmail" class="form-control" disabled style="opacity: 0.7; cursor: not-allowed;">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-half">
+                                    <label for="settingsPhone"><i class="fa-solid fa-phone"></i> Phone Number</label>
+                                    <input type="text" id="settingsPhone" class="form-control" placeholder="+91 98765 43210">
+                                </div>
+                                <div class="form-group col-half">
+                                    <label for="settingsCity"><i class="fa-solid fa-city"></i> Home City</label>
+                                    <input type="text" id="settingsCity" class="form-control" placeholder="New Delhi">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settingsBio"><i class="fa-solid fa-pen-nib"></i> Traveler Bio</label>
+                                <textarea id="settingsBio" class="form-control" rows="3" placeholder="Share a few words about your travel interests..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Travel Preferences -->
+                        <div class="settings-card" style="margin-top: 24px;">
+                            <div class="card-title-bar">
+                                <h3><i class="fa-solid fa-compass"></i> Default Travel Preferences</h3>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-half">
+                                    <label for="settingsStyle"><i class="fa-solid fa-route"></i> Default Travel Style</label>
+                                    <select id="settingsStyle" class="form-control">
+                                        <option value="nature">🌿 Nature & Scenic Trails</option>
+                                        <option value="adventure">⛰️ Adventure & Trekking</option>
+                                        <option value="cultural">🏛️ Cultural & Heritage</option>
+                                        <option value="relaxation">🌅 Relaxation & Serenity</option>
+                                    </select>
+                                    <span class="form-hint">Pre-selected whenever you open the Trip Planner</span>
+                                </div>
+
+                                <div class="form-group col-half">
+                                    <label><i class="fa-solid fa-indian-rupee-sign"></i> Default Calculation Currency</label>
+                                    <input type="text" class="form-control" value="INR (₹) Indian Rupee" disabled style="opacity: 0.7; cursor: not-allowed;">
+                                    <span class="form-hint">All Indian destinations are modeled in Indian Rupees</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Password / Security -->
+                        <div class="settings-card" style="margin-top: 24px;">
+                            <div class="card-title-bar">
+                                <h3><i class="fa-solid fa-lock"></i> Security & Password</h3>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settingsNewPass"><i class="fa-solid fa-key"></i> Change Password (Optional)</label>
+                                <input type="password" id="settingsNewPass" class="form-control" placeholder="Enter new password (min 6 chars) or leave blank">
+                                <span class="form-hint">Leave blank if you do not want to change your current password</span>
+                            </div>
+                        </div>
+
+                        <!-- Save Action Button -->
+                        <div style="margin-top: 28px; display: flex; justify-content: flex-end; gap: 14px;">
+                            <a href="profile.html" class="btn btn-outline btn-lg">Cancel</a>
+                            <button type="submit" class="btn btn-primary btn-lg" id="btnSaveSettings">
+                                <i class="fa-solid fa-floppy-disk"></i> Save Profile Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo">
+                    <span class="logo-icon"><i class="fa-solid fa-compass"></i></span>
+                    <span class="logo-text">Trip<span>Craft</span></span>
+                </a>
+                <p class="footer-desc">
+                    A modern dark-themed travel platform dedicated to discovering authentic hidden gems in India with realistic budgeting and smart day-wise itineraries.
+                </p>
+                <div class="footer-badges">
+                    <span class="footer-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+                    <span class="footer-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                    <span class="footer-tag"><i class="fa-brands fa-js"></i> Vanilla JS</span>
+                    <span class="footer-tag"><i class="fa-brands fa-python"></i> Flask</span>
+                </div>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-chevron-right"></i> All 9 Destinations</a></li>
+                    <li><a href="planner.html"><i class="fa-solid fa-chevron-right"></i> Interactive Trip Planner</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> About Project & Architecture</a></li>
+                    <li><a href="login.html"><i class="fa-solid fa-chevron-right"></i> User Login</a></li>
+                    <li><a href="register.html"><i class="fa-solid fa-chevron-right"></i> Create Account</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col dest-col">
+                <h4>Featured Destinations</h4>
+                <ul class="footer-links">
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Ziro Valley, Arunachal Pradesh</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Tawang, Arunachal Pradesh</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Majuli Island, Assam</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Gokarna, Karnataka</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Devprayag, Uttarakhand</a></li>
+                    <li><a href="destinations.html"><i class="fa-solid fa-location-dot"></i> Chopta, Uttarakhand</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>© 2026 TripCraft — BCA 5th Semester Web Application Development Project. Built with clean code for educational viva demonstration.</p>
+                <p class="footer-disclaimer-text">All travel costs and routes are simulated estimates for academic presentation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
