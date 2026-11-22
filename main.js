@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * TripCraft — Multi-Page Frontend Engine (Modern Dark Theme)
+ * Fernweh — Multi-Page Frontend Engine (Modern Dark Theme)
  * BCA 5th Semester Web Application Development Project
  * ==============================================================================
  * 
@@ -22,7 +22,7 @@ let DESTINATIONS_DATA = {
         state: "Arunachal Pradesh",
         category: "mountains",
         tag: "Apatani Cultural Haven",
-        image: "photo/ziro.jpg",
+        image: "ziro.jpg",
         description: "A tranquil valley cradled by pine-clad hills and emerald paddy terraces, home to the indigenous Apatani tribe known for sustainable farming, traditional wooden bamboo houses, and the famed Ziro Music Festival.",
         bestTime: "March to October (Ziro Festival in late Sept)",
         dailyRateText: "₹1,800 - ₹2,600 / day",
@@ -46,7 +46,7 @@ let DESTINATIONS_DATA = {
         state: "Arunachal Pradesh",
         category: "mountains",
         tag: "Monasteries & High Passes",
-        image: "photo/tawang.jpg",
+        image: "tawang.jpg",
         description: "Perched at an elevation of 10,000 feet near the Indo-Bhutan border, Tawang is renowned for India's largest Buddhist monastery founded in 1681, breathtaking high-altitude mountain passes, and crystal glacial lakes.",
         bestTime: "March to June & September to November",
         dailyRateText: "₹2,200 - ₹3,200 / day",
@@ -70,7 +70,7 @@ let DESTINATIONS_DATA = {
         state: "Assam",
         category: "coastal",
         tag: "World's Largest River Island",
-        image: "photo/Majuli.jpg",
+        image: "Majuli.jpg",
         description: "Formed by the mighty Brahmaputra River, Majuli is the world's largest inhabited river island and the heart of Assamese Neo-Vaishnavite culture, renowned for ancient Satras, traditional mask making, and peaceful riverbank life.",
         bestTime: "October to March",
         dailyRateText: "₹1,500 - ₹2,300 / day",
@@ -94,7 +94,7 @@ let DESTINATIONS_DATA = {
         state: "Karnataka",
         category: "coastal",
         tag: "Pristine Arabian Coast",
-        image: "photo/Gokarna.jpg",
+        image: "Gokarna.jpg",
         description: "A tranquil temple town bordered by rugged Western Ghats cliffs and untouched crescent beaches. Offers serene beach treks, golden sands, and cliffside sunsets without the chaotic crowds of mainstream beach destinations.",
         bestTime: "October to March",
         dailyRateText: "₹1,600 - ₹2,500 / day",
@@ -118,7 +118,7 @@ let DESTINATIONS_DATA = {
         state: "Uttarakhand",
         category: "heritage",
         tag: "Sacred Holy Confluence",
-        image: "photo/Devprayag.jpg",
+        image: "Devprayag.jpg",
         description: "The mystical mountain town where the gushing turquoise Bhagirathi river meets the calm, silvery Alaknanda river to form the holy River Ganga. Perched dramatically between steep Himalayan river cliffs.",
         bestTime: "Year-Round (Pleasant Oct to April)",
         dailyRateText: "₹1,400 - ₹2,200 / day",
@@ -142,7 +142,7 @@ let DESTINATIONS_DATA = {
         state: "Meghalaya",
         category: "nature",
         tag: "Asia's Cleanest Eco-Village",
-        image: "photo/mawlynnong.jpg",
+        image: "mawlynnong.jpg",
         description: "Renowned as 'God's Own Garden', this eco-conscious Khasi tribal village maintains 100% cleanliness with bamboo waste bins, flowering pathways, nearby bio-engineered living root bridges, and views overlooking Bangladesh.",
         bestTime: "September to May (Lush post-monsoon greenery)",
         dailyRateText: "₹1,700 - ₹2,600 / day",
@@ -166,7 +166,7 @@ let DESTINATIONS_DATA = {
         state: "Uttarakhand",
         category: "mountains",
         tag: "Mini Switzerland of India",
-        image: "photo/chopta.jpg",
+        image: "chopta.jpg",
         description: "An untouched alpine meadow (Bugyal) in the Garhwal Himalayas enveloped by dense pine, deodar, and rhododendron forests. Serves as the starting base for trekking to Tungnath (highest Shiva temple) and Chandrashila Summit.",
         bestTime: "April to June (Spring flora) & Sept to Nov (Crisp peaks)",
         dailyRateText: "₹1,800 - ₹2,700 / day",
@@ -190,7 +190,7 @@ let DESTINATIONS_DATA = {
         state: "Madhya Pradesh",
         category: "heritage",
         tag: "Bundela Royal Splendor",
-        image: "photo/orchha.jpg",
+        image: "orchha.jpg",
         description: "A frozen-in-time medieval capital situated along the rocky banks of the Betwa River. Famous for dramatic 16th-century Bundela Rajput architecture, palace fortresses, grand riverside cenotaphs, and ancient murals.",
         bestTime: "October to March",
         dailyRateText: "₹1,500 - ₹2,400 / day",
@@ -214,7 +214,7 @@ let DESTINATIONS_DATA = {
         state: "Tamil Nadu",
         category: "coastal",
         tag: "Mystical Edge of India",
-        image: "photo/Dhanushkodi.jpg",
+        image: "Dhanushkodi.jpg",
         description: "An evocative ghost town on the southeastern tip of Pamban Island, bordered by the turbulent Bay of Bengal on one side and the calm Indian Ocean on the other, at the geographical starting point of Rama Setu.",
         bestTime: "October to March",
         dailyRateText: "₹1,600 - ₹2,500 / day",
@@ -1442,14 +1442,14 @@ function initInteractiveMap() {
         const color = categoryColors[dest.category] || "#36BFC0";
         const icon  = createMarkerIcon(color);
 
-        // Use dest.image (set from API or fallback dataset — already points to photo/ folder)
-        const imgSrc = dest.image || ("photo/ziro.jpg");
+        // Use dest.image (set from API or fallback dataset — already points to  folder)
+        const imgSrc = dest.image || ("ziro.jpg");
 
         const popupHTML = `
             <div class="map-popup-card">
                 <div class="map-popup-thumb-wrap">
                     <img class="map-popup-thumb" src="${imgSrc}" alt="${dest.name}" loading="lazy"
-                         onerror="this.src='photo/almaty.jpg'">
+                         onerror="this.src='almaty.jpg'">
                     <span class="map-popup-tag">${dest.tag}</span>
                 </div>
                 <div class="map-popup-body">
