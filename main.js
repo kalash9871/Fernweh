@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * Fernweh — Multi-Page Frontend Engine (Modern Dark Theme)
+ * TripCraft — Multi-Page Frontend Engine (Modern Dark Theme)
  * BCA 5th Semester Web Application Development Project
  * ==============================================================================
  * 
