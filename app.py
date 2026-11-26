@@ -1,6 +1,6 @@
 """
 =============================================================================
-Fernweh — Multi-Page Travel Planning Web Application Backend
+TripCraft — Multi-Page Travel Planning Web Application Backend
 BCA 5th Semester Web Application Development Project
 =============================================================================
 
@@ -632,7 +632,7 @@ def plan_trip():
                 "railway_name": dest["railway"],
                 "railway_map_url": f"https://www.google.com/maps/search/?api=1&query={dest['railway_query']}"
             },
-            "disclaimer": "Academic Estimation Disclaimer: All financial figures and transport costs are realistic baseline estimates calculated for college project planning and educational reference. Fernweh does not claim live real-time pricing or live ticket booking."
+            "disclaimer": "Academic Estimation Disclaimer: All financial figures and transport costs are realistic baseline estimates calculated for college project planning and educational reference. TripCraft does not claim live real-time pricing or live ticket booking."
         }
     }
 
@@ -804,7 +804,7 @@ def auth_save_trip():
 # ==================== MAIN EXECUTION ====================
 if __name__ == "__main__":
     print("\n" + "=" * 65)
-    print("  Fernweh — Multi-Page Travel Application (Flask Server)")
+    print("  TripCraft — Multi-Page Travel Application (Flask Server)")
     print("  Serving frontend directly from:", FRONTEND_DIR)
     print("  Local URL: http://127.0.0.1:5000/")
     print("=" * 65 + "\n")
